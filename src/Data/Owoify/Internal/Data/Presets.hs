@@ -1,7 +1,7 @@
-module Internal.Data.Presets where
+module Data.Owoify.Internal.Data.Presets where
 
-import Internal.Entity.Word ( InnerWord )
-import qualified Internal.Data.Mappings as Mappings
+import qualified Data.Owoify.Internal.Data.Mappings as Mappings
+import Data.Owoify.Internal.Entity.Word ( InnerWord )
 
 specificWordMappingList :: [InnerWord -> IO InnerWord]
 specificWordMappingList =

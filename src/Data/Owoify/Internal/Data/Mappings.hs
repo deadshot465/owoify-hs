@@ -1,4 +1,4 @@
-module Internal.Data.Mappings
+module Data.Owoify.Internal.Data.Mappings
   ( mapBracketsToStartrails
   , mapConsonantRToConsonantW
   , mapDeadToDed
@@ -44,11 +44,11 @@ module Internal.Data.Mappings
 
 import Prelude
 
+import Data.Owoify.Internal.Entity.Word (innerReplace, innerReplaceWithFuncMultiple, innerReplaceWithFuncSingle, InnerWord)
 import Data.Text.Lazy (Text, pack, toUpper)
-import Text.RE.TDFA.Text.Lazy (compileRegex, RE)
+import Text.RE.PCRE.Text.Lazy (compileRegex, RE)
 import System.Random.Stateful (applyAtomicGen, uniformR)
 import System.Random (getStdRandom, Random (randomR))
-import Internal.Entity.Word (innerReplace, innerReplaceWithFuncMultiple, innerReplaceWithFuncSingle, InnerWord)
 
 compileDefaultOptionRegex :: String -> IO RE
 compileDefaultOptionRegex = compileRegex

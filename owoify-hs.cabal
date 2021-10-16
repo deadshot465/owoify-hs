@@ -5,14 +5,16 @@ cabal-version: 1.12
 -- see: https://github.com/sol/hpack
 
 name:           owoify-hs
-version:        0.1.0.0
-description:    Please see the README on GitHub at <https://github.com/githubuser/owoify-hs#readme>
-homepage:       https://github.com/githubuser/owoify-hs#readme
-bug-reports:    https://github.com/githubuser/owoify-hs/issues
-author:         Author name here
-maintainer:     example@example.com
-copyright:      2021 Author name here
-license:        BSD3
+version:        1.0.0.0
+synopsis:       Turn any English text into nonsensical babyspeaks.
+description:    Please see the README on GitHub at <https://github.com/deadshot465/owoify-hs#readme>
+category:       Text
+homepage:       https://github.com/deadshot465/owoify-hs#readme
+bug-reports:    https://github.com/deadshot465/owoify-hs/issues
+author:         Chehui Chou
+maintainer:     tetsuki.syu1315@gmail.com
+copyright:      2021 Chehui Chou
+license:        MIT
 license-file:   LICENSE
 build-type:     Simple
 extra-source-files:
@@ -21,16 +23,16 @@ extra-source-files:
 
 source-repository head
   type: git
-  location: https://github.com/githubuser/owoify-hs
+  location: https://github.com/deadshot465/owoify-hs
 
 library
   exposed-modules:
-      Internal.Data.Mappings
-      Internal.Data.Presets
-      Internal.Entity.Word
-      Internal.Parser.OwoifyParser
-      Internal.Util.Interleave
-      Lib
+      Data.Owoify.Internal.Data.Mappings
+      Data.Owoify.Internal.Data.Presets
+      Data.Owoify.Internal.Entity.Word
+      Data.Owoify.Internal.Parser.OwoifyParser
+      Data.Owoify.Internal.Util.Interleave
+      Data.Owoify.Owoify
   other-modules:
       Paths_owoify_hs
   hs-source-dirs:
@@ -38,8 +40,9 @@ library
   build-depends:
       HUnit >=1.6.2.0
     , base >=4.7 && <5
-    , random >=1.2.1
+    , random >=1.2.0
     , regex ==1.1.0.0
+    , regex-with-pcre ==1.1.0.0
     , text
   default-language: Haskell2010
 
@@ -54,8 +57,9 @@ executable owoify-hs-exe
       HUnit >=1.6.2.0
     , base >=4.7 && <5
     , owoify-hs
-    , random >=1.2.1
+    , random >=1.2.0
     , regex ==1.1.0.0
+    , regex-with-pcre ==1.1.0.0
     , text
   default-language: Haskell2010
 
@@ -71,7 +75,8 @@ test-suite owoify-hs-test
       HUnit >=1.6.2.0
     , base >=4.7 && <5
     , owoify-hs
-    , random >=1.2.1
+    , random >=1.2.0
     , regex ==1.1.0.0
+    , regex-with-pcre ==1.1.0.0
     , text
   default-language: Haskell2010

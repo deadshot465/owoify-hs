@@ -1,7 +1,8 @@
-module Internal.Util.Interleave where
+module Data.Owoify.Internal.Util.Interleave where
 
 import Prelude
 
+-- | Utility function to interleave two lists.
 interleave :: [a] -> [a] -> [a]
 interleave a b = go [] a b 0
   where
