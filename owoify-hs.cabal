@@ -5,7 +5,7 @@ cabal-version: 1.12
 -- see: https://github.com/sol/hpack
 
 name:           owoify-hs
-version:        1.0.0.0
+version:        1.0.0.1
 synopsis:       Turn any English text into nonsensical babyspeaks.
 description:    Please see the README on GitHub at <https://github.com/deadshot465/owoify-hs#readme>
 category:       Text
@@ -38,25 +38,7 @@ library
   hs-source-dirs:
       src
   build-depends:
-      HUnit >=1.6.2.0 && <1.7
-    , base >=4.7 && <5
-    , random >=1.2.0 && <1.3
-    , regex ==1.1.0.0
-    , regex-with-pcre ==1.1.0.0
-    , text >=1.2.4 && <1.3
-  default-language: Haskell2010
-
-executable owoify-hs-exe
-  main-is: Main.hs
-  other-modules:
-      Paths_owoify_hs
-  hs-source-dirs:
-      app
-  ghc-options: -threaded -rtsopts -with-rtsopts=-N
-  build-depends:
-      HUnit >=1.6.2.0 && <1.7
-    , base >=4.7 && <5
-    , owoify-hs
+      base >=4.7 && <5
     , random >=1.2.0 && <1.3
     , regex ==1.1.0.0
     , regex-with-pcre ==1.1.0.0

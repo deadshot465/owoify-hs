@@ -31,7 +31,7 @@ Add `owoify-hs` to your `package.yaml` in your Stack project:
 
 ```yaml
 dependencies:
-- owoify-hs == 1.0.0
+- owoify-hs == 1.0.0.1
 ```
 
 If you are using Cabal, add the package the usual way.
