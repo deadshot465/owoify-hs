@@ -21,7 +21,7 @@ Also I love Haskell. ❤️
 
 Because I love Haskell and currently Hackage doesn't have any owoify package yet. Also PureScript is influenced by Haskell and they have nearly the same syntax, so it doesn't make sense to have a PureScript port while not having a Haskell port.
 
-The difference is that owoify-hs makes use of Haskell's lazy evaluation. `Data.Text.Lazy` is used instead of `Data.Text`. This solved stack overflow problem with purescript-owoify when owoifying very long texts (i.e. chapter 1-20 of Tolstoy's *War and Peace*). The reason for using `Data.Text.Lazy.Text` instead of the good old `String` is because `Data.Text.Lazy.Text` and the eager version `Data.Text.Text` are meant for handling Unicode texts.
+The difference is that owoify-hs makes use of Haskell's lazy evaluation. `Data.Text.Lazy` is used instead of `Data.Text`. This *possibly* solved stack overflow problem with purescript-owoify when owoifying very long texts (i.e. chapter 1-20 of Tolstoy's *War and Peace*). The reason for using `Data.Text.Lazy.Text` instead of the good old `String` is because `Data.Text.Lazy.Text` and the eager version `Data.Text.Text` are meant for handling Unicode texts.
 
 Having said that, you would need to do `Data.Text.Lazy.pack <text>` before passing the text to the `owoify` function.
 
