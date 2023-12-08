@@ -14,6 +14,8 @@ module Data.Owoify.Internal.Data.Mappings
   , mapMeToMwe
   , mapMomToMwom
   , mapNrToNw
+  , mapMemToMwem
+  , unmapNywoToNyo
   , mapNVowelTToNd
   , mapNVowelToNy
   , mapOldToOwld
@@ -39,6 +41,14 @@ module Data.Owoify.Internal.Data.Mappings
   , mapVowelOrRExceptOLToWl
   , mapWorseToWose
   , mapYouToU
+  , mapGreatToGwate
+  , mapAviatToAwiat
+  , mapDedicatToDeditat
+  , mapRememberToRember
+  , mapWhenToWen
+  , mapFrightenedToFrigten
+  , mapMemeToMem
+  , mapFeelToFell
   )
   where
 
@@ -186,7 +196,16 @@ nrToNwUpper :: IO RE
 nrToNwUpper = compileDefaultOptionRegex "NR"
 
 nrToNwLower :: IO RE
-nrToNwLower = compileDefaultOptionRegex "nr"
+nrToNwLower = compileDefaultOptionRegex "([Nn])r"
+
+memToMwemUpper :: IO RE
+memToMwemUpper = compileDefaultOptionRegex "Mem"
+
+memToMwemLower :: IO RE
+memToMwemLower = compileDefaultOptionRegex "mem"
+
+nywoToNyo :: IO RE
+nywoToNyo = compileDefaultOptionRegex "([Nn])ywo"
 
 funcToFwuc :: IO RE
 funcToFwuc = compileDefaultOptionRegex "([Ff])uc"
@@ -194,8 +213,11 @@ funcToFwuc = compileDefaultOptionRegex "([Ff])uc"
 momToMwom :: IO RE
 momToMwom = compileDefaultOptionRegex "([Mm])om"
 
-meToMwe :: IO RE
-meToMwe = compileDefaultOptionRegex "([Mm])e"
+meToMweUpper :: IO RE
+meToMweUpper = compileDefaultOptionRegex "^Me$"
+
+meToMweLower :: IO RE
+meToMweLower = compileDefaultOptionRegex "^me$"
 
 nVowelToNyFirst :: IO RE
 nVowelToNyFirst = compileDefaultOptionRegex "n([aeiou])"
@@ -232,6 +254,33 @@ overToOwor = compileDefaultOptionRegex "([Oo])ver"
 
 worseToWose :: IO RE
 worseToWose = compileDefaultOptionRegex "([Ww])orse"
+
+greatToGwate :: IO RE
+greatToGwate = compileDefaultOptionRegex "([Gg])reat"
+
+aviatToAwiat :: IO RE
+aviatToAwiat = compileDefaultOptionRegex "([Aa])viat"
+
+dedicatToDeditat :: IO RE
+dedicatToDeditat = compileDefaultOptionRegex "([Dd])edicat"
+
+rememberToRember :: IO RE
+rememberToRember = compileDefaultOptionRegex "([Rr])emember"
+
+whenToWen :: IO RE
+whenToWen = compileDefaultOptionRegex "([Ww])hen"
+
+frightenedToFrigten :: IO RE
+frightenedToFrigten = compileDefaultOptionRegex "([Ff])righten(ed)*"
+
+memeToMemFirst :: IO RE
+memeToMemFirst = compileDefaultOptionRegex "Meme"
+
+memeToMemSecond :: IO RE
+memeToMemSecond = compileDefaultOptionRegex "Mem"
+
+feelToFell :: IO RE
+feelToFell = compileDefaultOptionRegex "^([Ff])eel$"
 
 faces :: [Text]
 faces = pack <$>
@@ -397,8 +446,16 @@ mapPleToPwe word = pleToPwe >>= \re -> pure $ innerReplace word re (pack "$1we")
 
 mapNrToNw :: InnerWord -> IO InnerWord
 mapNrToNw word = do
-  w <- nrToNwLower >>= \re -> pure $ innerReplace word re (pack "nw") False
+  w <- nrToNwLower >>= \re -> pure $ innerReplace word re (pack "$1w") False
   nrToNwUpper >>= \re -> pure $ innerReplace w re (pack "NW") False
+
+mapMemToMwem :: InnerWord -> IO InnerWord
+mapMemToMwem word = do
+    w <- memToMwemUpper >>= \re -> pure $ innerReplace word re (pack "mwem") False
+    memToMwemLower >>= \re -> pure $ innerReplace w re (pack "Mwem") False
+
+unmapNywoToNyo :: InnerWord -> IO InnerWord
+unmapNywoToNyo word = nywoToNyo >>= \re -> pure $ innerReplace word re (pack "$1yo") False
 
 mapFucToFwuc :: InnerWord -> IO InnerWord
 mapFucToFwuc word = funcToFwuc >>= \re -> pure $ innerReplace word re (pack "$1wuc") False
@@ -407,7 +464,9 @@ mapMomToMwom :: InnerWord -> IO InnerWord
 mapMomToMwom word = momToMwom >>= \re -> pure $ innerReplace word re (pack "$1wom") False
 
 mapMeToMwe :: InnerWord -> IO InnerWord
-mapMeToMwe word = meToMwe >>= \re -> pure $ innerReplace word re (pack "$1we") False
+mapMeToMwe word = do
+    w <- meToMweUpper >>= \re -> pure $ innerReplace word re (pack "Mwe") False
+    meToMweLower >>= \re -> pure $ innerReplace word re (pack "mwe") False
 
 mapNVowelToNy :: InnerWord -> IO InnerWord
 mapNVowelToNy word = do
@@ -439,3 +498,29 @@ mapOverToOwor word = overToOwor >>= \re -> pure $ innerReplace word re (pack "$1
 
 mapWorseToWose :: InnerWord -> IO InnerWord
 mapWorseToWose word = worseToWose >>= \re -> pure $ innerReplace word re (pack "$1ose") False
+
+mapGreatToGwate :: InnerWord -> IO InnerWord
+mapGreatToGwate word = greatToGwate >>= \re -> pure $ innerReplace word re (pack "$1wate") False
+
+mapAviatToAwiat :: InnerWord -> IO InnerWord
+mapAviatToAwiat word = aviatToAwiat >>= \re -> pure $ innerReplace word re (pack "$1wiat") False
+
+mapDedicatToDeditat :: InnerWord -> IO InnerWord
+mapDedicatToDeditat word = dedicatToDeditat >>= \re -> pure $ innerReplace word re (pack "$1editat") False
+
+mapRememberToRember :: InnerWord -> IO InnerWord
+mapRememberToRember word = rememberToRember >>= \re -> pure $ innerReplace word re (pack "$1ember") False
+
+mapWhenToWen :: InnerWord -> IO InnerWord
+mapWhenToWen word = whenToWen >>= \re -> pure $ innerReplace word re (pack "$1en") False
+
+mapFrightenedToFrigten :: InnerWord -> IO InnerWord
+mapFrightenedToFrigten word = frightenedToFrigten >>= \re -> pure $ innerReplace word re (pack "$1rigten") False
+
+mapMemeToMem :: InnerWord -> IO InnerWord
+mapMemeToMem word = do
+    w <- memeToMemFirst >>= \re -> pure $ innerReplace word re (pack "mem") False
+    memeToMemSecond >>= \re -> pure $ innerReplace w re (pack "Mem") False
+
+mapFeelToFell :: InnerWord -> IO InnerWord
+mapFeelToFell word = feelToFell >>= \re -> pure $ innerReplace word re (pack "$1ell") False

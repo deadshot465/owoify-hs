@@ -9,7 +9,6 @@ specificWordMappingList =
   , Mappings.mapMomToMwom
   , Mappings.mapTimeToTim
   , Mappings.mapMeToMwe
-  , Mappings.mapNVowelToNy
   , Mappings.mapOverToOwor
   , Mappings.mapOveToUv
   , Mappings.mapHahaToHeheXd
@@ -17,6 +16,14 @@ specificWordMappingList =
   , Mappings.mapYouToU
   , Mappings.mapReadToWead
   , Mappings.mapWorseToWose
+  , Mappings.mapGreatToGwate
+  , Mappings.mapAviatToAwiat
+  , Mappings.mapDedicatToDeditat
+  , Mappings.mapRememberToRember
+  , Mappings.mapWhenToWen
+  , Mappings.mapFrightenedToFrigten
+  , Mappings.mapMemeToMem
+  , Mappings.mapFeelToFell
   ]
 
 uvuMappingList :: [InnerWord -> IO InnerWord]
@@ -42,7 +49,8 @@ uwuMappingList =
 
 owoMappingList :: [InnerWord -> IO InnerWord]
 owoMappingList =
-  [ Mappings.mapLlToWw
+  [ Mappings.mapNVowelToNy
+  , Mappings.mapLlToWw
   , Mappings.mapVowelOrRExceptOLToWl
   , Mappings.mapOldToOwld
   , Mappings.mapOlToOwl
@@ -57,4 +65,6 @@ owoMappingList =
   , Mappings.mapLyToWy
   , Mappings.mapPleToPwe
   , Mappings.mapNrToNw
+  , Mappings.mapMemToMwem
+  , Mappings.unmapNywoToNyo
   ]

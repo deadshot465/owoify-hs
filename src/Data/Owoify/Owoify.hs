@@ -1,5 +1,7 @@
 module Data.Owoify.Owoify
   ( owoify
+  , uwuify
+  , uvuify
   , OwoifyLevel(..)
   )
   where
@@ -51,3 +53,21 @@ owoify source level = do
       wordsList <- sequence transformedWords <&> fmap toText
       let interleaved = reverse $ interleave wordsList s
       pure $ intercalate (pack "") interleaved
+
+-- | Owoify source text using Uwu owoness level and turn text into nonsensical babyspeaks.
+--
+-- Examples:
+--
+-- >>> uwuify (Data.Text.Lazy.pack "Hello World!")
+-- NOW "Hewwo WowwdUvU"
+uwuify :: Text -> IO Text
+uwuify source = owoify source Uwu
+
+-- | Owoify source text using Uwu owoness level and turn text into nonsensical babyspeaks.
+--
+-- Examples:
+--
+-- >>> uvuify (Data.Text.Lazy.pack "Hello World!")
+-- "Hewwowo Wowwd>w<"
+uvuify :: Text -> IO Text
+uvuify source = owoify source Uvu

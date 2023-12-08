@@ -31,7 +31,7 @@ Add `owoify-hs` to your `package.yaml` in your Stack project:
 
 ```yaml
 dependencies:
-- owoify-hs == 1.0.0.1
+- owoify-hs == 1.1.0.0
 ```
 
 If you are using Cabal, add the package the usual way.
@@ -93,7 +93,7 @@ That being said, `Data.Text.Lazy` is used, so it should be able to handle both s
 
 MIT License
 
-Copyright (c) 2021 Chehui Chou
+Copyright (c) 2023 Chehui Chou
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
